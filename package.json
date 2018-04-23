@@ -4,7 +4,7 @@
   "license": "ISC",
   "description": "A JavaScript API for interacting with Ripple in Node.js and the browser",
   "files": [
-    "dist/npm/*",
+    "dist/npm/*"
   ],
   "main": "dist/npm/",
   "types": "dist/npm/index.d.ts",

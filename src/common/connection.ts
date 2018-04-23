@@ -107,7 +107,7 @@ class Connection extends EventEmitter {
 
   _onMessage(message) {
     if (this._trace) {
-      this._console!.log(message)
+      this._console && this._console.log(message)
     }
     let parameters
     try {
@@ -135,11 +135,11 @@ class Connection extends EventEmitter {
 
   _onUnexpectedClose(beforeOpen, resolve, reject, code) {
     if (this._onOpenErrorBound) {
-      this._ws!.removeListener('error', this._onOpenErrorBound)
+      this._ws && this._ws.removeListener('error', this._onOpenErrorBound)
       this._onOpenErrorBound = null
     }
     // just in case
-    this._ws!.removeAllListeners('open')
+    this._ws && this._ws.removeAllListeners("open");
     this._ws = null
     this._isReady = false
     if (beforeOpen) {

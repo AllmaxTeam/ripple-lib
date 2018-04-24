@@ -110,17 +110,8 @@ class Connection extends events_1.EventEmitter {
         this._ws && this._ws.removeAllListeners('open');
         this._ws = null;
         this._isReady = false;
-        if (beforeOpen) {
-            // connection was closed before it was properly opened, so we must return
-            // error to connect's caller
-            this.connect().then(resolve, reject);
-        }
-        else {
-            // if first parameter ws lib sends close code,
-            // but sometimes it forgots about it, so default to 1006 - CLOSE_ABNORMAL
-            this.emit('disconnected', code || 1006);
-            this._retryConnect();
-        }
+        this.emit('disconnected', code || 1006);
+        this._retryConnect();
     }
     _calculateTimeout(retriesCount) {
         return (retriesCount < 40)
